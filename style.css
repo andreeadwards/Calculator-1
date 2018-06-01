@@ -3,21 +3,11 @@ body {
   background-color: #818181;
 }
 
-/*#calculator {
-  height: 410px;
-  width: 300px;
-  margin-top: 10%;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #dfd8d0;
-  border: 2px solid #908b85;
-  border-radius: 20px;
-  box-shadow: 7px 10px 34px 1px rgba(0, 0, 0, 0.68), inset -1px -6px 12px 0.1px #89847e;
-}*/
+
 
 #title {
 	width: 390px;
-	height: 70px;  
+	height: 110px;  
 }
 #name{
   padding-top: 20px;
@@ -49,7 +39,7 @@ body {
 #entrybox {
   width: 300px;
   height: 50px;
-  margin-left: 5%;
+  margin-left: 10%;
   margin-right: auto;
   border: 2px solid #b4b39d;
   border-radius: 6px;
@@ -59,13 +49,14 @@ body {
 #entry {
   position: relative;
   margin-right: 5%;
-  margin-left: 5%;
+  margin-left: 10%;
   bottom: 50%;
   font-size: 35px;
 }
 
 #logo {
-	margin-left:80px;
+	margin-top: 140px;
+	margin-left:70px;
 }
 /*#history {
   transform: translate(-13px, -17px);
@@ -81,7 +72,7 @@ body {
 
   width:320px;
   height: auto;
-  margin-left: 4%;
+  margin-left: 10%;
   margin-top: 5%; 
   font-size: 17px;
   font-weight: bold;
@@ -148,4 +139,3 @@ a:visited {
   text-decoration: none !important;
   outline: none !important;
 }
-
