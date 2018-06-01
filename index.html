@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Calculator</title>
+<title>Calculator</title>
 <meta charset='utf-8'>
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -28,15 +28,17 @@ var newNum =0;
 function mistery(){
 	var temp = Math.sqrt(newNum);
 	displayText= String(temp);
-	if (full_text !=""){
-	full_text =full_text+displayText;
-	full_text =full_text.substring(0,11-displayText.length);
+	if (full_text ===""){
+	full_text = displayText;
+	full_text =full_text.slice(0,11);
 	document.getElementById('answer').innerHTML =full_text;}
 	else{
-	full_text = displayText;
-	full_text =full_text.substring(0,11-displayText.length);
+	full_text = full_text+displayText;
+	full_text =full_text.substring(0,11-full_text.length);
 	document.getElementById('answer').innerHTML =full_text;
 	}
+	displayText
+	storedNum =Number(displayText.slice(0,7));
 	
 }	
 function clearDisplay() {
@@ -191,7 +193,7 @@ function calculate() {
   <!-- end calculator -->
 	  <div>
 	  <p  id ='logo'> &#9752; Made by EdwardsICS&#174; &#9752; </p></div>
-		</div>
-	</div>
-	</body>
-	</html>
+	  </div>
+</div>
+</body>
+</html>
