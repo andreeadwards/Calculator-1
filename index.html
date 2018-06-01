@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Calculator</title>
+<meta charset='utf-8'>
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" sizes="120x120" href="CalcIcon.png">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script>
+var displayText = "";
+var full_text ="";
+var operation ="";	
+var displayCleared =false;
+var calculationFinished = false;
+var first_calc =true;
+var op ="";	
+
+var storedNum = 0;
+var inputNum =0;
+var prevNum =0;
+var newNum =0;
+	
+function mistery(){
+	var temp = Math.sqrt(newNum);
+	displayText= String(temp);
+	if (full_text !=""){
+	full_text =full_text+displayText;
+	full_text =full_text.substring(0,11-displayText.length);
+	document.getElementById('answer').innerHTML =full_text;}
+	else{
+	full_text = displayText;
+	full_text =full_text.substring(0,11-displayText.length);
+	document.getElementById('answer').innerHTML =full_text;
+	}
+	
+}	
+function clearDisplay() {
+    // Select the calculator's display
+    // Clear the global variables and the display
+	full_text ="";
+    displayText = "";
+    storedNum = 0;
+	inputNum =0;
+	prevNum = 0;
+	newnum=0;
+    document.getElementById('answer').innerHTML=full_text;
+	displayCleared =true;
+	first_calc=true;
+	operation ="";
+}
+	
+function numInput(num) {
+	prevNum = storedNum;
+	displayText += String(num);
+	inputNum = Number(displayText);
+	newNum = inputNum;
+	if((full_text+displayText).length>12){
+		console.log((full_text+displayText).length);
+		full_text = full_text.substring(0, 10- displayText.length);
+	}
+	document.getElementById('answer').innerHTML =full_text + operation + displayText;
+	
+}
+
+
+
+function setOperation(command) {
+	
+	if (first_calc==true){
+	operation ="";
+	storedNum = newNum;}
+	document.getElementById("answer").innerHTML=displayText + command;
+	full_text=displayText;
+	displayText="";
+	operation =command;
+}
+
+function calculate() {
+    // Select the calculator's display
+	first_calc=false;
+	console.log(prevNum);
+	console.log(newNum);
+	// Do the math
+	if (operation == "+"){
+    	storedNum = prevNum + newNum;
+		displayText =String(storedNum);
+	}
+	else if (operation == "-"){
+		storedNum = prevNum - newNum;
+		displayText =String(storedNum);
+	}
+	else if (operation == "x"){
+		storedNum = prevNum * newNum;
+		displayText =String(storedNum);
+	}
+	else if (operation == "/"){
+		if (newNum ==0){
+			displayText ="ERROR";
+			storedNum =0;
+		}
+		else{
+		storedNum = prevNum / newNum;
+		displayText =String(storedNum);}
+	}
+	if (displayText.length>12){
+		displayText = displayText.slice(0,12);
+	}
+	document.getElementById("answer").innerHTML= displayText;
+	   
+}
+	function insertDecimal(dec) {
+    // Select the calculator's display
+    var display = document.getElementById("answer");
+
+    // Loop through the current number to make sure there isn't already a decimal
+    for (var i = 0; i < display.value.length; i++)
+        if (display.value.charAt(i) == '.') {
+            // If there is, do nothing
+            return;
+        }
+    // If there isn't add a decimal to the end of the displayed number
+        display.value += dec;
+}
+	</script>
+	</head>
+<body>
+	<div class='container'>
+  <div id='calculator'>
+
+    <!-- TITLE -->
+
+    <div id='title' >
+      	<span id= 'name'>ELECTRONIC CALCULATOR</span>
+		<span id = 'table'>
+	  		<table id = 'solar'>	
+ 				<tr >
+    				<th class ='cell'></th>
+    				<th class= 'cell'></th>
+    				<th class= 'cell'></th>
+					<th class= 'cell'></th>
+					<th class= 'cell'></th>		
+  				</tr>
+			</table>
+		</span>
+    </div>
+
+    <!-- ENTRY BOX -->
+
+    <div id='entrybox' class='text-right'>
+      <div id='entry'>
+        <p id='answer'></p>
+      </div>
+    </div>
+
+    <!-- BUTTONS -->
+
+    <div id='buttons'>
+
+      <button class='red' value='ac' onclick="clearDisplay()">AC</button>
+      <button class='red' value='mistery' onclick="mistery()">&#8709;</button>
+      <button value='/' onclick ="setOperation(this.value)">&divide;</button>
+      <button value='x' onclick ="setOperation(this.value)">x</button>
+
+      <button value='7' onclick="numInput(7)">7</button>
+      <button value='8' onclick="numInput(this.value)">8</button>
+      <button value='9' onclick="numInput(this.value)">9</button>
+      <button value='-' onclick ="setOperation(this.value)">-</button>
+
+      <button value='4' onclick="numInput(this.value)">4</button>
+      <button value='5' onclick="numInput(this.value)">5</button>
+      <button value='6' onclick="numInput(this.value)">6</button>
+      <button value='+' onclick ="setOperation(this.value)">+</button>
+
+
+      <button value='1' onclick="numInput(this.value)">1</button>
+      <button value='2' onclick="numInput(this.value)">2</button>
+      <button value='3' onclick="numInput(this.value)">3</button>
+      
+
+      <button id='zeroButton' value='0' onclick="numInput(this.value)">0</button>
+      <button value='.'>.</button>
+      <button id='equalButton' value='=' onclick="calculate()">=</button>
+
+    </div>
+    <!-- end buttons -->
+  <!-- end calculator -->
+	  <div>
+	  <p  id ='logo'> &#9752; Made by EdwardsICS&#174; &#9752; </p></div>
+		</div>
+	</div>
+	</body>
+	</html>
